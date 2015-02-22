@@ -2,6 +2,10 @@
 Created on 19/2/2015
 
 @author: PC29
+
+
+Andres Ramon Adriano
+Primer Proyecto de Python 
 '''
 
 
