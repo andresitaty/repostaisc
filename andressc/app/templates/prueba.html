@@ -1,0 +1,326 @@
+{% extends 'main.html' %} 
+{% block contenido %}
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>  ................    </title>
+<link href="static/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="static/js/jquery.dataTables.min.js"></script>
+<script src="static/js/bootstrapPager.min.js"></script>
+
+<link href="static/css/jquery-ui.min.css" rel="stylesheet">
+<script src="static/js/jquery-ui.min.js"></script>
+
+
+<link href="static/css/datepicker.css" rel="stylesheet">
+<script src="static/js/bootstrap-datepicker.js"></script>
+
+<link href="static/css/jquery.validity.css" rel="stylesheet">
+<script src="static/js/jquery.validity.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	$('#btnCrear').click(function(){
+		$('#divFormItsae').show();
+		$('#btnCrear').hide();
+		
+		
+	});
+	
+	
+	$('#btnCancelar').click(function(){
+		$('#divFormItsae').hide();
+		$('#btnCrear').show();
+			
+			
+	});	
+	
+	
+	
+	 $('#formP').validity(function(){ 
+	     
+		 $('#nombre')
+	     .require ()
+	     
+	      $('#apaterno')
+	     .require ()
+	     
+	      $('#amaterno')
+	     .require ()
+	     
+		  $('#cedula')
+	     .require ()
+	     .match ('number'); 
+	     
+		 $('#fnacimiento')
+	     .require ()
+	     
+	     $('#direccion')
+	     .require ()
+	     
+	     $('#celular')
+	     .require ()
+	     .match ('number'); 
+	     
+	     $('#estado')
+	     .require ()
+	     
+	     
+	     
+	     
+	       
+	    
+	    });  	
+	
+	
+		$('#fnacimiento').datepicker({
+			format:"yyyy-mm-dd"
+			
+			
+		});	
+	
+
+
+		
+	});
+
+	
+	
+	
+
+	
+</script>
+
+
+	
+
+
+
+</head>
+<body>
+
+    
+
+ 
+	
+<div id="divFormItsae" style="display: none;">
+<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"> Formulario de Registro </h3>
+			
+			</div>
+				<div class="panel-body">	
+				<div id="forAdd" algin="center">
+				
+				
+				<form action="/addPersona" id="formP" name="formP" class="form-horizontal" method="post"  role="form">
+				<div class="form-group">
+				
+				
+					<label for="nombre" class="col-sm-2 control-label"> Nombre: </label>
+					<div class="col-sm-10">
+					<input type="text" id="nombre" name="nombre" class="form-control">
+					<form.errors.nombre></form.errors.nombre>
+					
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="apaterno" class="col-sm-2 control-label"> A. Paterno: </label>
+					<div class="col-sm-10">
+					<input type="text" id="apaterno" name="apaterno" class="form-control">
+					
+					</div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<label for="amaterno" class="col-sm-2 control-label"> A. Materno: </label>
+					<div class="col-sm-10">
+					<input type="text" id="amaterno" name="amaterno" class="form-control">
+					
+					</div>
+				</div>
+				
+				
+			
+				<div class="form-group" >
+					<label for="cedula" class="col-sm-2 control-label"> Cedula: </label>
+					<div class="col-sm-10">
+					<input type="text" id="cedula" name="cedula" class="form-control">	
+				</div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<label for="fnacimiento" class="col-sm-2 control-label"> fnacimiento: </label>
+					<div class="col-sm-10">
+					<input type="date" id="fnacimiento" name="fnacimiento" class="form-control">
+					
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				<div class="form-group">
+					<label for="sexo" class="col-sm-2 control-label"> sexo: </label>
+					<div class="radio"> 
+					<label class="checbox-inline">
+					<input type="radio" value="M" name="sexo" checked="checked">Masculino </label>
+					<label class="checbox-inline">
+					<input type="radio" value="F" name="sexo">Femenino </label>
+					</div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<label for="direccion" class="col-sm-2 control-label"> direcci&oacute;n: </label>
+					<div class="col-sm-10">
+					<textarea rows="2" class="form-control" type="text"  name="direccion" id="direccion" name="direccion"></textarea>
+					
+					</div>
+				</div>
+				
+				
+				
+				
+				<div class="form-group">
+					<label for="celular" class="col-sm-2 control-label"> Celular: </label>
+					<div class="col-sm-10">
+					<input type="text"  name="celular" id="celular" class="form-control">
+					
+					</div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<label for="estado" class="col-sm-2 control-label"> estado: </label>
+					<div class="col-sm-10">
+					<select   name="estado" class="form-control"> 
+						<option value="1"> Activo</option>
+						<option value="2"> Desactivo</option>
+					</select>
+					
+					</div>
+				</div>
+				
+				<div class="form-group">
+				<div class="col-sm-10">
+					<input type="submit" name="btnEnviar" class="btn btn-success" value="Registrar"></input>
+					<input type="reset" name="btnLimpiar" class="btn btn-info" value="Limpiar"></input>
+					<input type="button" name="btnCancelar" id="btnCancelar" class="btn btn-success" value="Cancelar"></input>
+					<input type="reset" name="btn" id="btnCancelar" class="btn btn-success" value="Cancelar"></input>
+					
+				</div>
+				</div>
+				
+				</form>
+				</div>
+				
+				
+				</div>
+			
+		</div>
+	</div>
+ 
+ 
+ <div id="divFormS" aling="center">
+ <form action="/buscarDato" id="formBuscar" class="form-inline" method="get" role="form" >
+
+ <div class="form-group">
+					<label for="nombre" class="col-sm-2 control-label"> Buscar Nombre: </label>
+					<div class="col-sm-10">
+					<input type="text" id="bnombre" name="bnombre" class="form-control">
+					<input type="submit" value="buscar" id="btnBuscar" name="btnBuscar" class="btn btn-primary" >
+					<input type="button" value="crear" id="btnCrear" class="btn btn-success">
+					
+					</div>
+					</div>
+					</form>
+ 					</div>
+ 
+ 
+ <br>
+ <div class="table-responsive">
+ <table class="table" id="tableItsae">
+ 
+ 
+ <thead>
+ <tr>
+ 		<th> Nombre </th>
+ 		<th> A. Paterno</th>
+ 		<th> A. Materno</th>
+ 		<th> Cedula </th>
+ 		<th> F. Nacimiento </th>
+ 		<th> Sexo </th>
+ 		<th> Direccion </th>
+ 		<th> Celular </th>
+ 		<th> Estado </th>
+ 	</tr>
+ 	</thead>
+ 	
+ 	<tbody>
+ 	{% for d in data %}
+ 	
+ 	
+ 	
+ 	<tr>
+ 		<td>{{d[1]}}</td>¨
+ 		<td>{{d[2]}}</td>
+ 		<td>{{d[3]}}</td>
+ 		<td>{{d[4]}}</td>
+ 		<td>{{d[5]}}</td>
+ 		<td>{{d[6]}}</td>
+ 		<td>{{d[7]}}</td>
+ 		<td>{{d[8]}}</td>
+ 		<td>{{d[9]}}</td>
+ 	</tr>
+ 	
+ 		{% endfor %}
+ 		
+	</tbody>
+ </table>
+ </div>
+ 
+ <script type="text/javascript">
+ 	$('#tableItsae').DataTable({
+ 		
+ 		pagingType:"bootstrapPager", 
+ 		pagerSettings:{ searchOnEnter:true,
+ 			language:"Pagina ~ of ~ Paginas "}
+ 	
+ 	}
+ 	);
+ 
+ </script>
+ <script type="text/javascript">
+ $('#bnombre').autocomplete({
+		source:"/buscarauto",
+		minLength:2 
+	 
+	 
+ });
+ 
+ 
+ 
+ </script>
+ </body>
+{% endblock %}
+ 
+ 
+ 
+ 
+ 	 
+ 	
+ 	
+ 	 
